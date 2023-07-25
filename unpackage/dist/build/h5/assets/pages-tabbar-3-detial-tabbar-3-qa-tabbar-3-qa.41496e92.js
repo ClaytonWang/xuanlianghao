@@ -1,0 +1,1 @@
+import{o as a,c as e,w as s,i as t,a as o}from"./index-f2590237.js";import{_ as r}from"./_plugin-vue_export-helper.1b428a4d.js";const n=r({data:()=>({})},[["render",function(r,n,c,d,p,f){const i=t;return a(),e(i,{class:"content"},{default:s((()=>[o(" 页面 - 提问 ")])),_:1})}],["__scopeId","data-v-5fe51595"]]);export{n as default};

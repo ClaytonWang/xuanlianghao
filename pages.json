@@ -2,25 +2,45 @@
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabbar/tabbar-1/tabbar-1",
+			"path": "pages/tabbar/home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"app-plus": {
+					"titleNView": {
+						"searchInput": {
+							"align": "left",
+							"backgroundColor": "#fff",
+							"borderRadius": "4px",
+							"disabled": false,
+							"placeholder": "请输入要搜索的号码",
+							"placeholderColor": "#ccc"
+						},
+						"buttons": [
+							{
+								"color": "red",
+								"colorPressed": "#FD6801",
+								"float":"left",
+								"fontSize": "22px",
+								"text": "选靓号网"
+							}
+						]
+					}
+				}
 			}
 		},
 		{
-			"path": "pages/tabbar/tabbar-2/tabbar-2",
+			"path": "pages/tabbar/favorite/index",
 			"style": {}
 		},
 		{
-			"path": "pages/tabbar/tabbar-3/tabbar-3",
+			"path": "pages/tabbar/navigate/index",
 			"style": {}
 		},
 		{
-			"path": "pages/tabbar/tabbar-4/tabbar-4",
+			"path": "pages/tabbar/qa/index",
 			"style": {}
 		},
 		{
-			"path": "pages/tabbar/tabbar-5/tabbar-5",
+			"path": "pages/tabbar/mine/index",
 			"style": {}
 		},
 		{
@@ -48,43 +68,44 @@
 		"color": "#8F8F94",
 		"selectedColor": "#f33e54",
 		"list": [{
-				"pagePath": "pages/tabbar/tabbar-1/tabbar-1",
+				"pagePath": "pages/tabbar/home/index",
 				"iconPath": "static/img/tabbar/home.png",
 				"selectedIconPath": "static/img/tabbar/homeactive.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-2/tabbar-2",
+				"pagePath": "pages/tabbar/favorite/index",
 				"iconPath": "static/img/tabbar/guanzhu.png",
 				"selectedIconPath": "static/img/tabbar/guanzhuactive.png",
-				"text": "关注"
+				"text": "收藏"
 			},
 			//#ifdef MP-WEIXIN
 			{
-				"pagePath": "pages/tabbar/tabbar-3/tabbar-3",
-				"iconPath": "static/img/tabbar/add.png",
-				"selectedIconPath": "static/img/tabbar/addactive.png",
-				"text": "发布"
+				"pagePath": "pages/tabbar/navigate/index",
+				"iconPath": "static/img/tabbar/nav_icon.png",
+				"selectedIconPath": "static/img/tabbar/nav_icon_active.png",
+				"text": "导航"
 			},
 			//#endif
 			//#ifndef MP-WEIXIN
 			{
-				"pagePath": "pages/tabbar/tabbar-3/tabbar-3",
-				"iconPath": "static/img/tabbar/add.png",
-				"selectedIconPath": "static/img/tabbar/addactive.png"
+				"pagePath": "pages/tabbar/navigate/index",
+				"iconPath": "static/img/tabbar/nav_icon.png",
+				"selectedIconPath": "static/img/tabbar/nav_icon_active.png",
+				"text": "导航"
 			},
 			//#endif
 			{
-				"pagePath": "pages/tabbar/tabbar-4/tabbar-4",
+				"pagePath": "pages/tabbar/qa/index",
 				"iconPath": "static/img/tabbar/news.png",
 				"selectedIconPath": "static/img/tabbar/newsactive.png",
-				"text": "消息"
+				"text": "咨询"
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-5/tabbar-5",
+				"pagePath": "pages/tabbar/mine/index",
 				"iconPath": "static/img/tabbar/me.png",
 				"selectedIconPath": "static/img/tabbar/meactive.png",
-				"text": "我"
+				"text": "我的"
 			}
 		]
 	}
