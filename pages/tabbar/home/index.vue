@@ -16,7 +16,7 @@
 		data() {
 			return {
 				list: [
-					'https://static.xuanxuanhao.com/xwhdp/20221110/71VH25.jpg',
+					'/static/img/swiper/3.jpg',
 					'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/2af8a801cde75ee45edd03a594d95f5d.png',
 					'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/1fa6f9febfc09c4b455ff0b80e0cfd04.png',
 				]
