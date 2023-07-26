@@ -6,10 +6,11 @@
 		<image class="banner" src="../../../static/img/active_free.png"></image>
 		<uv-tabs :list="navList" @click="click" class="tab" :activeStyle="active" :inactiveStyle="inactive"
 			itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></uv-tabs>
-		<view class="conent-box">
-			<view v-for="item in suites" :key="item.id" v-if="currTab==='suite'">
-				<Suite :item="item" />
-			</view>
+		<view v-for="item in suites" :key="item.id" v-if="currTab==='suite'" class="conent-suite-box">
+			<Suite :item="item" />
+		</view>
+		<view v-for="item in prettyNums" :key="item.id" v-if="currTab === 'phone'" class="content-number-box">
+			<PrettyNumberItem :item="item" />
 		</view>
 	</view>
 </template>
@@ -64,6 +65,18 @@
 						flow: '40GB',
 						img: 'https://static.xuanxuanhao.com/tcsl/20230412/GDH9DF.jpg'
 					}
+				],
+				prettyNums:[
+					{
+						id:'138-1117-1456',
+						desc:'预存200元,月消费130元,协议期60个月',
+						price:'￥0'
+					},
+					{
+						id:'138-1117-1456',
+						desc:'预存200元,月消费130元,协议期60个月',
+						price:'￥0'
+					}
 				]
 			}
 		},
@@ -91,8 +104,11 @@
 			width: 100%;
 		}
 
-		.conent-box {
+		.conent-suite-box {
 			margin: .5rem .3rem;
+		}
+		.content-number-box {
+			
 		}
 	}
 </style>
