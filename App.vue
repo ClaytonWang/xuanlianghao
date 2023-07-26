@@ -24,4 +24,10 @@ export default {
 
 <style>
 /*每个页面公共css */ 
+html{
+	font-size: 100px;
+}
+body{
+	background-color: #efefef;
+}
 </style>

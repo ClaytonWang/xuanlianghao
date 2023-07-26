@@ -21,6 +21,13 @@
 								"float":"left",
 								"fontSize": "22px",
 								"text": "选靓号网"
+							},
+							{
+								"color": "#000",
+								"colorPressed": "#000",
+								"float":"right",
+								"fontSize": "12px",
+								"text": "上海市"
 							}
 						]
 					}
@@ -55,7 +62,16 @@
 			"path": "pages/tabbar-3-detial/tabbar-3-qa/tabbar-3-qa",
 			"style": {}
 		}
-	],
+	    ,{
+            "path" : "components/Suite/Suite",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
