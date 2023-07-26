@@ -35,16 +35,17 @@
 	padding: .5rem;
 	border:1px solid #e5e5e5;
 	border-radius: .3rem;
+	background-color: #fff;
 	.title{
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: bold;
 	}
 	.desc{
 		width: 100%;
-		font-size: .5rem;
+		font-size: .1rem;
 		text-align: left;
 	}
 	.foot{
@@ -56,23 +57,24 @@
 		label{
 			display: block;
 			padding: 2px;
-			height: .9rem;
-			line-height: .9rem;
-			font-size: 13px;
+			height: .8rem;
+			line-height: .8rem;
+			font-size: 10px;
 			background-color: #1da7fd;
 		}
 		text{
 			display: block;
-			height: .9rem;
-			line-height: .9rem;
+			height: .8rem;
+			line-height: .8rem;
 			margin-left: 5px;
 			padding: 2px;
 			background-color: #f0430d;
 			box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 10%);
 			border-radius: 2px;
-			font-size: 13px;
+			font-size: 10px;
 			color: white;
 		}
 	}
 }
+
 </style>

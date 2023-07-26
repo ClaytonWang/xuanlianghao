@@ -6,12 +6,19 @@
 		<image class="banner" src="../../../static/img/active_free.png"></image>
 		<uv-tabs :list="navList" @click="click" class="tab" :activeStyle="active" :inactiveStyle="inactive"
 			itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></uv-tabs>
-		<view v-for="item in suites" :key="item.id" v-if="currTab==='suite'" class="conent-suite-box">
-			<Suite :item="item" />
+			
+		<view class="conent-suite-box" v-if="currTab==='suite'">
+			<view v-for="item in suites" :key="item.id">
+				<Suite :item="item" />
+			</view>
 		</view>
-		<view v-for="item in prettyNums" :key="item.id" v-if="currTab === 'phone'" class="content-number-box">
-			<PrettyNumberItem :item="item" />
+
+		<view class="content-number-box" v-if="currTab === 'phone'">
+			<view v-for="item in prettyNums" :key="item.id">
+				<PrettyNumberItem :item="item" />
+			</view>
 		</view>
+
 	</view>
 </template>
 
@@ -19,7 +26,7 @@
 	export default {
 		data() {
 			return {
-				currTab:'phone',
+				currTab: 'phone',
 				imgsList: [
 					'/static/img/swiper/3.jpg',
 					'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/2af8a801cde75ee45edd03a594d95f5d.png',
@@ -27,10 +34,10 @@
 				],
 				navList: [{
 					name: '手机靓号',
-					id:'phone'
+					id: 'phone'
 				}, {
 					name: '超值套餐',
-					id:'suite'
+					id: 'suite'
 				}],
 				active: {
 					color: 'red',
@@ -66,16 +73,15 @@
 						img: 'https://static.xuanxuanhao.com/tcsl/20230412/GDH9DF.jpg'
 					}
 				],
-				prettyNums:[
-					{
-						id:'138-1117-1456',
-						desc:'预存200元,月消费130元,协议期60个月',
-						price:'￥0'
+				prettyNums: [{
+						id: '138-1117-1<pretty>456</pretty>',
+						desc: '预存200元,月消费130元,协议期60个月',
+						price: '￥0'
 					},
 					{
-						id:'138-1117-1456',
-						desc:'预存200元,月消费130元,协议期60个月',
-						price:'￥0'
+						id: '138-1117-1456',
+						desc: '预存200元,月消费130元,协议期60个月',
+						price: '￥0'
 					}
 				]
 			}
@@ -107,8 +113,13 @@
 		.conent-suite-box {
 			margin: .5rem .3rem;
 		}
+
 		.content-number-box {
-			
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: auto;
+			grid-gap: 2px;
+			margin: .3rem;
 		}
 	}
 </style>
