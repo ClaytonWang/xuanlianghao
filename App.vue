@@ -7,7 +7,7 @@
 			setTimeout(() => {
 				uni.setTabBarBadge({
 					index: 1,
-					text: state.myFavorite.length.toString()
+					text: store.state.myFavorite.length.toString()
 				});
 				uni.showTabBarRedDot({
 					index: 3

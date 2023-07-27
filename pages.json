@@ -73,6 +73,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/detail/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "号码预约",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

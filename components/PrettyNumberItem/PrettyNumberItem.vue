@@ -1,7 +1,7 @@
 <template>
 	<view class="pretty-number-item">
-		<view class="title">
-			<label v-html="item.id"></label>
+		<view class="title" @click="clickTitle">
+			<label v-html="item.title"></label>
 			<uv-image :src="img"  width="25px" height="25px" mode="widthFix"></uv-image>
 		</view>
 		<view class="body">
@@ -30,9 +30,14 @@
 			};
 		},
 		methods:{
+			clickTitle(){
+				uni.navigateTo({
+					url:'/pages/detail/index?id='+this.item.id
+				})
+			},
 			clickFavorite(){
 				this.item.isFav = !this.item.isFav;
-				store.commit('addFavorite', this.item);
+				store.dispatch('addFavorite', this.item);
 			}
 		}
 	}
