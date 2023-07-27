@@ -73,20 +73,14 @@
 						img: 'https://static.xuanxuanhao.com/tcsl/20230412/GDH9DF.jpg'
 					}
 				],
-				prettyNums: [{
-						id: '138-1117-1<pretty>456</pretty>',
-						desc: '预存200元,月消费130元,协议期60个月',
-						price: '￥0'
-					},
-					{
-						id: '138-1117-1456',
-						desc: '预存200元,月消费130元,协议期60个月',
-						price: '￥0'
-					}
-				]
 			}
 		},
 		onLoad() {},
+		computed:{
+			prettyNums(){
+				return this.$store.state.prettyNums;
+			}
+		},
 		methods: {
 			click(item) {
 				this.currTab = item.id;

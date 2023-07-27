@@ -1,4 +1,5 @@
 <script>
+	import store from '@/store/index.js'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch');
@@ -6,7 +7,7 @@
 			setTimeout(() => {
 				uni.setTabBarBadge({
 					index: 1,
-					text: '31'
+					text: state.myFavorite.length.toString()
 				});
 				uni.showTabBarRedDot({
 					index: 3
