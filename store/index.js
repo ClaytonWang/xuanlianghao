@@ -37,10 +37,21 @@ const store = createStore({
 			} else {
 				state.myFavorite.push(favorite);
 			}
-			uni.setTabBarBadge({
-				index: 1,
-				text: state.myFavorite.length.toString()
-			});
+			
+			//更新原始数据
+			for(const item of state.prettyNums){
+				if(item.id === favorite.id){
+					item.isFav = favorite.isFav;
+					break;
+				}
+			}
+			
+			try{
+				uni.setTabBarBadge({
+					index: 1,
+					text: state.myFavorite.length.toString()
+				});
+			}catch(e){}
 		}
 	},
 	actions: {

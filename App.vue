@@ -15,7 +15,11 @@
 			}, 1000);
 		},
 		onShow: function() {
-			console.log('App Show');
+			console.log(store.state.myFavorite.length)
+			uni.setTabBarBadge({
+				index: 1,
+				text: store.state.myFavorite.length.toString()
+			});
 		},
 		onHide: function() {
 			console.log('App Hide');

@@ -30,62 +30,75 @@
 				<uv-cell title="备注" value="每个月最低消费160元，承诺在网120月，号码激活时必须预存160元以上话费，否则无法正常开机使用。使用满一年后可免违注销，仅限上海本地办理，持证件签收"
 					:center="true"></uv-cell>
 			</uv-cell-group>
-			<uv-form :model="form" :rules="rules" ref="uvFormRef" labelPosition="left" class="form">
-				<uv-form-item required label="客户姓名" prop="username" borderBottom>
-					<uv-input v-model="form.username" placeholder="请输入您的中文姓名" border="none" />
-				</uv-form-item>
-				<uv-form-item required label="手机号" prop="mobile" borderBottom>
-					<uv-input v-model="form.mobile" placeholder="请输入您的正确联系方式" border="none" />
-				</uv-form-item>
-				<uv-form-item required label="收货地址" prop="address" borderBottom>
-					<uv-input v-model="form.address" placeholder="请输入您的真实收货地址" border="none" />
-				</uv-form-item>
-				<uv-form-item label="备注" prop="beizhu" borderBottom>
-					<uv-input v-model="form.beizhu" placeholder="最大1000个字符!" border="none" />
-				</uv-form-item>
-			</uv-form>
-			<view class="aggrement">
-				<uv-checkbox-group v-model="checkboxValue">
-					<uv-checkbox activeColor="red" name="aggrement" label="我已阅读并同意"></uv-checkbox>
-				</uv-checkbox-group>
-				<uv-text @click="()=>{openAggre(0)}" type="primary" text="《关于客户个人信息收集、使用及保护的公告》"></uv-text>
-				<uv-text @click="()=>{openAggre(1)}" type="primary" text="《实名制信息安全责任告知书》"></uv-text>
-				<uv-text @click="()=>{openAggre(2)}" type="primary" text="《优选号码规则详情》"></uv-text>
-				<uv-text @click="()=>{openAggre(3)}" type="primary" text="《五部委联合通告》"></uv-text>
-				<uv-text @click="()=>{openAggre(4)}" type="primary" text="《活动声明》"></uv-text>
-				<uv-popup ref="popup" :close-on-click-overlay="true" mode="bottom" closeable="true">
-					<view class="agg-content">
-						<text v-html="agrrementContent"></text>
-					</view>
-				</uv-popup>
+
+		</view>
+		<uv-form :model="form" :rules="rules" ref="uvFormRef" labelPosition="left" class="form">
+			<uv-form-item required label="客户姓名" prop="username" borderBottom>
+				<uv-input v-model="form.username" placeholder="请输入您的中文姓名" border="none" />
+			</uv-form-item>
+			<uv-form-item required label="手机号" prop="mobile" borderBottom>
+				<uv-input v-model="form.mobile" placeholder="请输入您的正确联系方式" border="none" />
+			</uv-form-item>
+			<uv-form-item required label="收货地址" prop="address" borderBottom>
+				<uv-input v-model="form.address" placeholder="请输入您的真实收货地址" border="none" />
+			</uv-form-item>
+			<uv-form-item label="备注" prop="beizhu" borderBottom>
+				<uv-input v-model="form.beizhu" placeholder="最大1000个字符!" border="none" />
+			</uv-form-item>
+		</uv-form>
+		<view class="aggrement">
+			<uv-checkbox-group v-model="checkboxValue">
+				<uv-checkbox activeColor="red" name="aggrement" label="我已阅读并同意"></uv-checkbox>
+			</uv-checkbox-group>
+			<uv-text @click="()=>{openAggre(0)}" type="primary" text="《关于客户个人信息收集、使用及保护的公告》"></uv-text>
+			<uv-text @click="()=>{openAggre(1)}" type="primary" text="《实名制信息安全责任告知书》"></uv-text>
+			<uv-text @click="()=>{openAggre(2)}" type="primary" text="《优选号码规则详情》"></uv-text>
+			<uv-text @click="()=>{openAggre(3)}" type="primary" text="《五部委联合通告》"></uv-text>
+			<uv-text @click="()=>{openAggre(4)}" type="primary" text="《活动声明》"></uv-text>
+			<uv-popup ref="popup" :close-on-click-overlay="true" mode="bottom" :closeable="true">
+				<view class="agg-content">
+					<text v-html="agrrementContent"></text>
+				</view>
+			</uv-popup>
+		</view>
+		<view style="padding: 10px;font-size:12px;">
+			预约不需要在线支付；预约成功后，客服首先核实号码，然后确
+			定是否交易。用户可以随时取消订单，不承担任何费用。未满14岁
+			的未成年人无法通过运营商实名办卡。
+		</view>
+		<view class="reminder">
+			<h5>温馨提示</h5>
+			<p><span class="red_spot"></span>联系客服确认号码是否还在。</p>
+			<p><span class="red_spot"></span>预约成功后确认交易时间和营业厅地点</p>
+			<p>
+				<span class="red_spot"></span>
+				根据国家工信部《电弧按用户真实身份信息登记规定》
+				所有手机号码必须实名制办理。需上传机主本人身份
+				证上半身照片、人脸验证激活后才能使用。所办号码
+				严禁用于非法用途，否则会承担法律责任，请知晓。
+			</p>
+		</view>
+		<view class="bottom-bar">
+			<view class="left">
+				<view>
+					<text>合计:</text>
+					<uv-text type="error" mode="price" text="0"></uv-text>
+				</view>
+				<view>
+					<text>预存200+卡费0</text>
+				</view>
 			</view>
-			<view>
-				<text>
-					预约不需要在线支付；预约成功后，客服首先核实号码，然后确
-					定是否交易。用户可以随时取消订单，不承担任何费用。未满14岁
-					的未成年人无法通过运营商实名办卡。
-				</text>
-			</view>
-			<view>
-				<uv-button type="primary" text="立即预约"></uv-button>
-			</view>
-			<view class="reminder">
-				<h5>温馨提示</h5>
-				<p><span class="red_spot"></span>联系客服确认号码是否还在。</p>
-				<p><span class="red_spot"></span>预约成功后确认交易时间和营业厅地点</p>
-				<p>
-					<span class="red_spot"></span>
-					根据国家工信部《电弧按用户真实身份信息登记规定》
-					所有手机号码必须实名制办理。需上传机主本人身份
-					证上半身照片、人脸验证激活后才能使用。所办号码
-					严禁用于非法用途，否则会承担法律责任，请知晓。
-				</p>
+			<view class="right">
+				<view class="sc" @click="clickFavorite">{{item.isFav?'已收藏':'收藏'}}</view>
+				<view class="order-now">提交订单</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import store from '@/store/index.js';
+	
 	const agconent = [
 		`《关于客户个人信息收集、使用及保护的公告》\n\n关于客户个人信息收集、使用及保护的公告\n\n尊敬的客户：\n\n      根据《全国人民代表大会常务委员会关于加强网络信息保护的决定》、《电信和互联网用户个人信息保护规定》（工业和信息化部令第24号）、《电话用户真实身份信息登记规定》（工业和信息化部令第25号）等法律法规、规定的相关要求，客户在我公司办理移动电话等各类业务的入网、过户以及需要出示客户证件有关业务时，应配合出示本人有效证件原件并进行登记，登记信息包括客户姓名、证件类型号码及地址等。\n\n       在切实做好用户资料保密的前提下，为更好的为客户提供服务，在保障客户权益的前提下，我公司将合理使用客户的客户资料。为向客户提供更为优质、个性化的服务，公司将通过业务受理系统登记、纸质返档，通过网络接收、读取并记录等方式，收集客户个人信息；使用收集的客户个人信息用于服务通知、服务改进、业务提醒、以及其他经客户许可的用途。我公司将对在提供服务过程中收集、使用的客户个人信息履行保护义务。\n\n                                   中国移动通信集团上海有限公司`,
 		`《实名制信息安全责任告知书》\n\n实名制信息安全责任告知书\n\n尊敬的客户：\n\n感谢您选择中国移动！当您在办理移动号码入网时，请您确保这是您本人的自愿行为，且为您自己使用而办理，不是在他人要求或指使下办理，不是办理后给他人使用。\n\n同时特别提醒您：您应持本人身份证原件办理号码入网，您对本号码拥有使用权。根据国家公安部等五部委《关于依法严厉打击惩戒治理非法买卖电话卡银行卡违法犯罪活动的通告》，入网号码必须实名登记，且不得将号卡租借、贩卖或以任何方式提供给他人。如您的号码被他人利用发生涉恐、诈骗、骚扰等非法违规行为，您将承担本号码项下产生的所有责任，请您确保规范使用您的号码。\n\n中国移动通信集团销售分公司`,
@@ -94,8 +107,13 @@
 		`《活动声明》\n\n活动声明\n\n在2023年6月30日前，新入网用户激活即获赠超清视话体验包业务3个月，每月100分钟视频通话资源。（温馨提示：苹果终端暂不支持视频通话，无法使用本视频通话分钟数据）`
 	];
 	export default {
+		onShow() {
+			this.item = uni.getStorageSync('numData');
+			console.log(this.item)
+		},
 		data() {
 			return {
+				item:{},
 				checkboxValue: ['aggrement'],
 				form: {
 					username: '',
@@ -141,6 +159,10 @@
 				this.agrrementContent = agconent[index];
 				this.$refs.popup.open();
 			},
+			clickFavorite(){
+				this.item.isFav = !this.item.isFav;
+				store.dispatch('addFavorite', this.item);
+			}
 		},
 		computed: {
 			shadowStyle() {
@@ -252,10 +274,101 @@
 				}
 			}
 
-			.aggrement {
-				.agg-content {
-					max-height: calc(100vh - 50px);
-					overflow-y: auto;
+		}
+
+		.cell {
+			:deep(.uv-cell__body__content) {
+				min-width: 40px;
+			}
+		}
+
+		.form {
+			margin-top: .3rem;
+			padding-top: .3rem;
+			border-radius: 5px;
+			background-color: #fff;
+
+			:deep(.uv-form-item__body) {
+				padding: 0 1rem;
+
+				.uv-form-item__body__left {
+					width: 70px !important;
+				}
+			}
+		}
+
+		.aggrement {
+			margin-top: .3rem;
+			padding-top: .3rem;
+			border-radius: 5px;
+			background-color: #fff;
+			padding: 10px;
+
+			.agg-content {
+				max-height: calc(100vh - 50px);
+				overflow-y: auto;
+			}
+
+			:deep(uni-text) {
+				span {
+					font-size: 15px;
+				}
+			}
+		}
+
+		.reminder {
+			padding: 10px;
+			margin-bottom: 50px;
+			font-size: 15px;
+		}
+
+		.bottom-bar {
+			width: 100%;
+			height: 50px;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 10px;
+			border-top: 0.26666667vw solid #ccc;
+			width: 100%;
+			background-color: #fff;
+
+			.left {
+				display: flex;
+				flex-direction: column;
+				font-size: 13px;
+				view {
+					display: flex;
+				}
+			}
+
+			.right {
+				display: flex;
+				margin-right: 1rem;
+				.sc {
+					right: 28vw;
+					width: 5rem;
+					height: 2rem;
+					border-radius: 1rem 0 0 1rem;
+					background-color: #fbb836;
+					color: #fff;
+					font-size: .6rem;
+					text-align: center;
+					line-height: 2rem;
+				}
+
+				.order-now {
+					width: 5rem;
+					height: 2rem;
+					border-radius: 0 1rem 1rem 0;
+					background-color: #fc6925;
+					color: #fff;
+					font-size: .6rem;
+					text-align: center;
+					line-height: 2rem;
 				}
 			}
 		}

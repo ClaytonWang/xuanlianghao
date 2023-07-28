@@ -34,6 +34,7 @@
 				uni.navigateTo({
 					url:'/pages/detail/index?id='+this.item.id
 				})
+				uni.setStorageSync("numData", this.item);
 			},
 			clickFavorite(){
 				this.item.isFav = !this.item.isFav;

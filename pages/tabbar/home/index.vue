@@ -23,6 +23,7 @@
 </template>
 
 <script>
+	import store from '@/store/index.js';
 	export default {
 		data() {
 			return {
@@ -75,7 +76,16 @@
 				],
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			
+		},
+		onShow() {
+			console.log(store.state.myFavorite.length)
+			uni.setTabBarBadge({
+				index: 1,
+				text: store.state.myFavorite.length.toString()
+			});
+		},
 		computed:{
 			prettyNums(){
 				return this.$store.state.prettyNums;
