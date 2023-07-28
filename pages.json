@@ -46,25 +46,53 @@
 		},
 		{
 			"path": "pages/tabbar/qa/index",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "客服咨询"
+			}
 		},
 		{
 			"path": "pages/tabbar/mine/index",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
 		},
 		{
-			"path": "pages/tabbar-3-detial/tabbar-3-release/tabbar-3-release",
-			"style": {}
+			"path": "pages/message/order",
+			"style": {
+				"navigationBarTitleText": "订购须知"
+			}
 		},
 		{
-			"path": "pages/tabbar-3-detial/tabbar-3-video/tabbar-3-video",
-			"style": {}
+			"path": "pages/message/trade",
+			"style": {
+				"navigationBarTitleText": "交易条款"
+			}
 		},
 		{
-			"path": "pages/tabbar-3-detial/tabbar-3-qa/tabbar-3-qa",
-			"style": {}
-		}
-	    ,{
+			"path": "pages/message/send",
+			"style": {
+				"navigationBarTitleText": "送货政策"
+			}
+		},
+		{
+			"path": "pages/message/buy",
+			"style": {
+				"navigationBarTitleText": "付款方式"
+			}
+		},
+		{
+			"path": "pages/message/contact",
+			"style": {
+				"navigationBarTitleText": "联系我们"
+			}
+		},
+		{
+			"path": "pages/message/introduce",
+			"style": {
+				"navigationBarTitleText": "公司介绍"
+			}
+		},
+		{
             "path" : "components/Suite/Suite",
             "style" :                                                                                    
             {
@@ -78,6 +106,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "号码预约",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/search/search",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

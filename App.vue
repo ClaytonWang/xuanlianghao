@@ -41,3 +41,12 @@
 		color: #f0430d;
 	}
 </style>
+<style lang="scss">
+	.cont {
+		padding: 1rem;
+
+		p {
+			margin-top: .5rem;
+		}
+	}
+</style>

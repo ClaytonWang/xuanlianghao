@@ -1,6 +1,35 @@
 <template>
 	<view class="content">
-		页面 - 4
+		<view class="header">
+			<uv-image src="../../../static/img/zixunkefu.4bb46e0f.png" width="117px" height="117px"></uv-image>
+			<view class="word">
+				<text class="zixun">Hi~ 有什么要咨询的吗？</text>
+				<text class="zixun1">点击下方客服和我们联系吧</text>
+			</view>
+		</view>
+		<view class="body">
+			<view>
+				<a href="https://work.weixin.qq.com/kfid/kfc3e72972dafd4a78d">
+					<image src="../../../static/img/客服(1).90ef8a39.png"></image>
+				</a>
+				<text>立即咨询</text>
+			</view>
+			<view @click="dial">
+				<!-- #ifdef APP-PLUS -->
+				<image src="../../../static/img/电话.1475d9fe.png"></image>
+				<!-- #endif -->
+				<!-- #ifdef H5 -->
+				<a :href='phones'>
+					<image src="../../../static/img/电话.1475d9fe.png"></image>
+				</a>
+				<!-- #endif -->
+				<text>客服热线</text>
+			</view>
+		</view>
+		<view class="footer">
+			<text>客服在线服务时间：每周一至周日 8:00-24:00</text>
+			<span>意见反馈</span>
+		</view>
 	</view>
 </template>
 
@@ -8,22 +37,95 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				phone: '+8613816801870',
+				phones: '',
 			}
 		},
 		onLoad() {
 
 		},
+		onShow() {
+			//H5
+			this.phones = 'tel:' + this.phone;
+		},
 		methods: {
-
+			dial() {
+				uni.makePhoneCall({
+					phoneNumber: this.phone
+				});
+			},
 		}
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	.content {
-		text-align: center;
-		height: 400upx;
-		margin-top: 200upx;
+		width: 100%;
+
+		.header {
+			display: flex;
+			justify-content: space-between;
+			background-color: #fff;
+			box-shadow: 0 1px 1px 1px #f9f9f9;
+			border-radius: .5rem;
+			margin: 1rem .5rem;
+			padding: .5rem;
+
+			.word {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				margin-right: 2rem;
+
+				.zixun {
+					width: 200px;
+					height: 30px;
+					padding-left: .8rem;
+					line-height: 30px;
+					background: url(data:image/png;base64,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) no-repeat;
+					background-size: 100% 30px;
+					text-align: center;
+					color: #000;
+				}
+
+				.zixun1 {
+					color: #666;
+					margin-top: 1rem;
+					font-size: .8rem
+				}
+			}
+
+		}
+
+		.body {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 1rem;
+			padding: .5rem;
+			box-shadow: 0 1px 1px 1px #f9f9f9;
+			border-radius: .5rem;
+			background-color: #fff;
+
+			image {
+				width: 53px;
+				height: 53px;
+			}
+
+			view {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+
+		.footer {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin-top: 1rem;
+			color: #999;
+			font-size: .8rem;
+		}
 	}
 </style>

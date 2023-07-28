@@ -42,6 +42,14 @@
 			return {
 
 			};
+		},
+		methods:{
+			goToPage(url) {
+				if (!url) return;
+				uni.navigateTo({
+					url
+				});
+			}
 		}
 	}
 </script>

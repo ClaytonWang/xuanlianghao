@@ -8,7 +8,7 @@
 			</view>
 			<view class="box">
 				<view class="num-box">
-					<view class="num" v-html="'13501697070'"></view>
+					<view class="num" v-html="item.title"></view>
 					<text>靓</text>
 				</view>
 				<view class="level"></view>
@@ -90,15 +90,16 @@
 			</view>
 			<view class="right">
 				<view class="sc" @click="clickFavorite">{{item.isFav?'已收藏':'收藏'}}</view>
-				<view class="order-now">提交订单</view>
+				<view class="order-now" @click="submit">提交订单</view>
 			</view>
 		</view>
+		<uv-toast ref="uvToast"></uv-toast>
 	</view>
 </template>
 
 <script>
 	import store from '@/store/index.js';
-	
+
 	const agconent = [
 		`《关于客户个人信息收集、使用及保护的公告》\n\n关于客户个人信息收集、使用及保护的公告\n\n尊敬的客户：\n\n      根据《全国人民代表大会常务委员会关于加强网络信息保护的决定》、《电信和互联网用户个人信息保护规定》（工业和信息化部令第24号）、《电话用户真实身份信息登记规定》（工业和信息化部令第25号）等法律法规、规定的相关要求，客户在我公司办理移动电话等各类业务的入网、过户以及需要出示客户证件有关业务时，应配合出示本人有效证件原件并进行登记，登记信息包括客户姓名、证件类型号码及地址等。\n\n       在切实做好用户资料保密的前提下，为更好的为客户提供服务，在保障客户权益的前提下，我公司将合理使用客户的客户资料。为向客户提供更为优质、个性化的服务，公司将通过业务受理系统登记、纸质返档，通过网络接收、读取并记录等方式，收集客户个人信息；使用收集的客户个人信息用于服务通知、服务改进、业务提醒、以及其他经客户许可的用途。我公司将对在提供服务过程中收集、使用的客户个人信息履行保护义务。\n\n                                   中国移动通信集团上海有限公司`,
 		`《实名制信息安全责任告知书》\n\n实名制信息安全责任告知书\n\n尊敬的客户：\n\n感谢您选择中国移动！当您在办理移动号码入网时，请您确保这是您本人的自愿行为，且为您自己使用而办理，不是在他人要求或指使下办理，不是办理后给他人使用。\n\n同时特别提醒您：您应持本人身份证原件办理号码入网，您对本号码拥有使用权。根据国家公安部等五部委《关于依法严厉打击惩戒治理非法买卖电话卡银行卡违法犯罪活动的通告》，入网号码必须实名登记，且不得将号卡租借、贩卖或以任何方式提供给他人。如您的号码被他人利用发生涉恐、诈骗、骚扰等非法违规行为，您将承担本号码项下产生的所有责任，请您确保规范使用您的号码。\n\n中国移动通信集团销售分公司`,
@@ -113,7 +114,7 @@
 		},
 		data() {
 			return {
-				item:{},
+				item: {},
 				checkboxValue: ['aggrement'],
 				form: {
 					username: '',
@@ -159,9 +160,46 @@
 				this.agrrementContent = agconent[index];
 				this.$refs.popup.open();
 			},
-			clickFavorite(){
+			clickFavorite() {
 				this.item.isFav = !this.item.isFav;
 				store.dispatch('addFavorite', this.item);
+			},
+			submit() {
+				uni.request({
+					method: 'POST',
+					url: '',
+					header: {
+						"content-type": "application/json"
+					},
+					data: {
+						...this.form
+					},
+					success: (res) => {
+						console.log(res.data);
+						this.$refs.uvToast.show({
+							type: 'success',
+							message: "提交成功",
+							duration:3000,
+							complete() {
+								uni.navigateBack({
+									delta: 1
+								});
+							}
+						});
+					},
+					fail: (err) => {
+						this.$refs.uvToast.show({
+							type: 'error',
+							message: "提交失败,请重新提交!",
+							duration:3000,
+							complete() {
+								uni.navigateBack({
+									delta: 1
+								});
+							}
+						});
+					}
+				})
 			}
 		},
 		computed: {
@@ -289,7 +327,7 @@
 			background-color: #fff;
 
 			:deep(.uv-form-item__body) {
-				padding: 0 1rem;
+				padding: 1rem 1rem 0 1rem;
 
 				.uv-form-item__body__left {
 					width: 70px !important;
@@ -340,6 +378,7 @@
 				display: flex;
 				flex-direction: column;
 				font-size: 13px;
+
 				view {
 					display: flex;
 				}
@@ -348,6 +387,7 @@
 			.right {
 				display: flex;
 				margin-right: 1rem;
+
 				.sc {
 					right: 28vw;
 					width: 5rem;
