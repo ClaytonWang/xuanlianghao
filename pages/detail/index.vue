@@ -90,7 +90,7 @@
 			</view>
 			<view class="right">
 				<view class="sc" @click="clickFavorite">{{item.isFav?'已收藏':'收藏'}}</view>
-				<view class="order-now" @click="submit">提交订单</view>
+				<view class="order-now" @click="submit" :class="!isValide?'disabled':''">提交订单</view>
 			</view>
 		</view>
 		<uv-toast ref="uvToast"></uv-toast>
@@ -122,37 +122,28 @@
 					address: '',
 					beizhu: ''
 				},
+				agrrementContent: '',
 				rules: {
 					username: [{
-						// 自定义验证函数，见上说明
-						validator: (rule, valcallback) => {
-							const flag = uni?.$uv?.username(value) ? uni?.$uv?.username(value) : false;
-							return flag;
-						},
+						required: true,
 						message: '请输入姓名',
 						trigger: ['blur', 'change']
 					}],
 					mobile: [{
 						// 自定义验证函数，见上说明
-						validator: (rule, valcallback) => {
-							const flag = uni?.$uv?.mobile(value) ? uni?.$uv?.mobile(value) : false;
-							// 上面有说，返回true表校验通过，返回false表示不通过
+						validator: (rule,value, valcallback) => {
+							const flag = /^1(3\d|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[0-35-9])\d{8}$/.test(value);
 							return flag;
 						},
-						message: '请输入电话',
+						message: '请输入正确的电话',
 						trigger: ['blur', 'change']
 					}],
 					address: [{
-						// 自定义验证函数，见上说明
-						validator: (rule, valcallback) => {
-							const flag = uni?.$uv?.address(value) ? uni?.$uv?.address(value) : false;
-							return flag;
-						},
+						required: true,
 						message: '请输入真实地址',
 						trigger: ['blur', 'change']
 					}]
-				},
-				agrrementContent: ''
+				}
 			};
 		},
 		methods: {
@@ -165,17 +156,15 @@
 				store.dispatch('addFavorite', this.item);
 			},
 			submit() {
-				uni.request({
-					method: 'POST',
-					url: '',
-					header: {
-						"content-type": "application/json"
-					},
-					data: {
-						...this.form
-					},
-					success: (res) => {
-						console.log(res.data);
+				if(!this.isValide) return;
+				
+				this.$http(this.$api.order, {
+					...this.form
+				}).then(res => {
+					console.log(res.data);
+					
+					// todo
+					if(res.data){
 						this.$refs.uvToast.show({
 							type: 'success',
 							message: "提交成功",
@@ -186,21 +175,16 @@
 								});
 							}
 						});
-					},
-					fail: (err) => {
+					}else{
 						this.$refs.uvToast.show({
 							type: 'error',
 							message: "提交失败,请重新提交!",
-							duration:3000,
-							complete() {
-								uni.navigateBack({
-									delta: 1
-								});
-							}
+							duration:3000
 						});
 					}
-				})
-			}
+				});
+				
+			},
 		},
 		computed: {
 			shadowStyle() {
@@ -215,6 +199,11 @@
 					paddingTop: "120rpx",
 					marginTop: "-120rpx",
 				}
+			},
+			isValide(){
+				return !!this.form.username &&
+					!!this.form.mobile && 
+					!!this.form.address;
 			}
 		}
 	}
@@ -409,6 +398,10 @@
 					font-size: .6rem;
 					text-align: center;
 					line-height: 2rem;
+				}
+				.disabled{
+					color: #999;
+					background-color: #fd7452;
 				}
 			}
 		}

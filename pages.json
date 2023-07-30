@@ -114,7 +114,7 @@
             "path" : "pages/search/search",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "搜索号码",
                 "enablePullDownRefresh": false
             }
             

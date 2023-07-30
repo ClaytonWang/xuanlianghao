@@ -1,34 +1,34 @@
 <template>
 	<view class="header">
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('')}">
 			<image src="../../static/img/menu/phone_icon.png"></image>
 			<label>手机号</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('birth')}">
 			<image src="../../static/img/menu/birth_icon.png"></image>
 			<label>生日号</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('lover')}">
 			<image src="../../static/img/menu/lover_icon.png"></image>
 			<label>情侣号</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('free')}">
 			<image src="../../static/img/menu/free_icon.png"></image>
 			<label>0元号</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('bazi')}">
 			<image src="../../static/img/menu/baozi.png"></image>
 			<label>豹子号</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('shunzi')}">
 			<image src="../../static/img/menu/shunzi.png"></image>
 			<label>顺子号</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('AABB')}">
 			<image src="../../static/img/menu/AABB.png"></image>
 			<label>AABB</label>
 		</view>
-		<view class="item">
+		<view class="item" @click="()=>{goToPage('AAAB')}">
 			<image src="../../static/img/menu/AAAB.png"></image>
 			<label>AAAB</label>
 		</view>
@@ -44,8 +44,8 @@
 			};
 		},
 		methods:{
-			goToPage(url) {
-				if (!url) return;
+			goToPage(rule) {
+				let url='/pages/search/search?filter='+rule;
 				uni.navigateTo({
 					url
 				});
