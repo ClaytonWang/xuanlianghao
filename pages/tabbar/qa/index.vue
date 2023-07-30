@@ -10,17 +10,17 @@
 		<view class="body">
 			<view>
 				<a href="https://work.weixin.qq.com/kfid/kfc3e72972dafd4a78d">
-					<image src="../../../static/img/客服(1).90ef8a39.png"></image>
+					<image src="../../../static/img/90ef8a39.png"></image>
 				</a>
 				<text>立即咨询</text>
 			</view>
 			<view @click="dial">
 				<!-- #ifdef APP-PLUS -->
-				<image src="../../../static/img/电话.1475d9fe.png"></image>
+				<image src="../../../static/img/1475d9fe.png"></image>
 				<!-- #endif -->
 				<!-- #ifdef H5 -->
 				<a :href='phones'>
-					<image src="../../../static/img/电话.1475d9fe.png"></image>
+					<image src="../../../static/img/1475d9fe.png"></image>
 				</a>
 				<!-- #endif -->
 				<text>客服热线</text>
