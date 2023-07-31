@@ -55,8 +55,7 @@ const store = createStore({
 		}
 	},
 	actions: {
-		async getPrettyNums(){
-			const data = await getFromServer();
+		getPrettyNums({commit},data){
 			commit('getData',data)
 		},
 		addFavorite({commit},favorite) {

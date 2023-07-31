@@ -3,7 +3,7 @@
 		<uv-swiper :list="imgsList" previousMargin="50" nextMargin="50" circular :autoplay="true" radius="5"
 			height="200px" bgColor="#ffffff"></uv-swiper>
 		<HomeNav />
-		<image class="banner" src="../../../static/img/active_free.png"></image>
+		
 		<uv-tabs :list="navList" @click="click" class="tab" :activeStyle="active" :inactiveStyle="inactive"
 			itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></uv-tabs>
 			
@@ -14,7 +14,8 @@
 		</view>
 
 		<view class="content-number-box" v-if="currTab === 'phone'">
-			<view v-for="item in prettyNums" :key="item.id">
+			<uv-loading-icon v-if="loading" text="加载中" textSize="30rpx"></uv-loading-icon>
+			<view v-for="item in prettyNums" :key="item.id" v-if="!loading">
 				<PrettyNumberItem :item="item" />
 			</view>
 		</view>
@@ -27,6 +28,7 @@
 	export default {
 		data() {
 			return {
+				loading:true,
 				currTab: 'phone',
 				imgsList: [
 					'/static/img/swiper/3.jpg',
@@ -36,7 +38,7 @@
 				navList: [{
 					name: '手机靓号',
 					id: 'phone'
-				}, {
+				},{
 					name: '超值套餐',
 					id: 'suite'
 				}],
@@ -76,7 +78,18 @@
 				],
 			}
 		},
-		onLoad() {
+		async onLoad() {
+			const res = await this.$http(this.$api.search, {
+				filter: {rule:'',price:'3'}
+			});
+			this.loading=false;
+			const {
+				data,
+				code
+			} = res.data;
+			if (code == 0) {
+				store.dispatch('getPrettyNums',data.splice(0,10));
+			}
 			
 		},
 		onShow() {

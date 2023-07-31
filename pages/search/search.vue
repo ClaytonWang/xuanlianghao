@@ -1,6 +1,5 @@
 <template>
-	<next-paging ref="paging" v-model="numList" @query="getList" :autoShowBackToTop="true"
-		:defaultPageSize="15">
+	<next-paging ref="paging" v-model="numList" @query="getList" :autoShowBackToTop="true" :defaultPageSize="15">
 		<!-- next-paging默认铺满全屏，此时页面所有view都应放在next-paging标签内，否则会被盖住 -->
 		<view class="content">
 			<image src="../../static/img/million_banner.png"></image>
@@ -14,7 +13,7 @@
 				<DaDropdown ref="DaDropdownRef" :dropdownMenu="dropdownMenuList" :duration="300" :menuActiveText="false"
 					@confirm="handleConfirm">
 				</DaDropdown>
-				
+
 				<view class="content-number-box">
 					<view v-for="item in numList" :key="item.id">
 						<PrettyNumberItem :item="item" />
@@ -23,7 +22,7 @@
 			</view>
 		</view>
 	</next-paging>
-	
+
 </template>
 
 <script>
@@ -41,40 +40,40 @@
 				case 'lover':
 					this.filter = {
 						rule: 'AABB',
-						price: ''
+						price: '-9999'
 					};
 					break;
 				case 'free':
 					break;
 				case 'bazi':
 					this.filter = {
-						rule: 'AAA',
-						price: ''
+						rule: 'XAAA',
+						price: '-9999'
 					};
 					break;
 				case 'shunzi':
 					this.filter = {
 						rule: 'ABC',
-						price: ''
+						price: '-9999'
 					};
 					break;
 				case 'AABB':
 					this.filter = {
 						rule: 'AABB',
-						price: ''
+						price: '-9999'
 					};
 					break;
 				case 'AAAB':
 					this.filter = {
 						rule: 'AAAB',
-						price: ''
+						price: '-9999'
 					};
 					break;
 				default:
 					break;
 			}
 
-			await this.getList(1,15,this.filter);
+			await this.getList(1, 15);
 			this.$refs.paging.reload()
 		},
 		data() {
@@ -94,20 +93,16 @@
 						value: '-9999',
 						options: [{
 								label: 'AAA',
-								value: 'AAA'
+								value: 'XAAA'
 							},
-							{
-								label: 'AAAA',
-								value: 'AAAA'
-							},
-							{
-								label: 'AAAAA',
-								value: 'AAAAA'
-							},
-							{
-								label: 'ABC',
-								value: 'ABC'
-							},
+							// {
+							// 	label: 'AAAA',
+							// 	value: 'AAAA'
+							// },
+							// {
+							// 	label: 'AAAAA',
+							// 	value: 'AAAAA'
+							// },
 							{
 								label: 'ABCD',
 								value: 'ABCD'
@@ -166,12 +161,17 @@
 		methods: {
 			async handleConfirm(v) {
 				// await this.getList(1,15);
-				this.filter={...this.filter,...v};
+				this.filter = {
+					...this.filter,
+					...v
+				};
 				this.$refs.paging.reload();
 			},
 			async search() {
 				console.log(this.keyword)
-				this.filter={strResNumDesc:this.keyword};
+				this.filter = {
+					strResNumDesc: this.keyword
+				};
 				// await this.getList(1,10);
 				this.$refs.paging.reload();
 			},
@@ -181,13 +181,18 @@
 			async getList(pageNo, pageSize) {
 				// return this.$refs.paging.complete(this.$store.state.myFavorite);
 				const res = await this.$http(this.$api.search, {
-					filter:this.filter,
+					filter: this.filter,
 					pageSize: 10,
 					page: 1
 				});
 				console.log(res, '返回参数');
-				// this.numList = res.data;
-				this.$refs.paging.complete(arr);
+				const {
+					data,
+					code
+				} = res.data;
+				if (code == 0) {
+					this.$refs.paging?.complete(data);
+				}
 			}
 		},
 		computed: {

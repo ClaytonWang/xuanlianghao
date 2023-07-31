@@ -13,21 +13,21 @@
 				</view>
 				<view class="level"></view>
 				<view class="order">
-					<view class="order-lst">服务费 ¥0 元 + 话费 0 元</view>
+					<view class="order-lst">服务费 ¥0 元 + 话费 {{item.m_DepositAmount/100}} 元</view>
 					<view class="num_total_price">
 						合计
-						<view class="total_price">¥0 元</view>
+						<view class="total_price">¥{{item.m_DepositAmount/100}}元</view>
 					</view>
 				</view>
 				<view class="desc">
-					尊贵的用户：该号码为上海移动正规号码，每月最低消费130元协议期60个月，办理129元全家享套餐，免费赠送300M家庭宽，安装小区必须有移动宽带资源，预存200元话费一次性到账，使用满一年不想使用可到营业厅办理注销号码无违约金，下单后有专业客服和您联系为您办理实名制开卡，【官方销售】安全有保障/售后无顾虑。
+					尊贵的用户：该号码为上海移动正规号码，每月最低消费{{item.m_DepositAmount/100}}元协议期{{item.m_DepositMonth/10}}个月，办理129元全家享套餐，免费赠送300M家庭宽，安装小区必须有移动宽带资源，预存200元话费一次性到账，使用满一年不想使用可到营业厅办理注销号码无违约金，下单后有专业客服和您联系为您办理实名制开卡，【官方销售】安全有保障/售后无顾虑。
 				</view>
 			</view>
 			<uv-cell-group class="cell">
-				<uv-cell title="最低消费" value="160" :center="true"></uv-cell>
+				<uv-cell title="最低消费" :value="item.m_DepositAmount/100" :center="true"></uv-cell>
 				<uv-cell title="送货方式" value="快递送货" :center="true"></uv-cell>
-				<uv-cell title="套餐" value="全家享169元" :center="true"></uv-cell>
-				<uv-cell title="备注" value="每个月最低消费160元，承诺在网120月，号码激活时必须预存160元以上话费，否则无法正常开机使用。使用满一年后可免违注销，仅限上海本地办理，持证件签收"
+				<uv-cell title="套餐" :value="item.m_DepositAmount/100" :center="true"></uv-cell>
+				<uv-cell title="备注" :value="'每个月最低消费'+item.m_DepositAmount/100+'元，承诺在网'+item.m_DepositMonth/10+'月，号码激活时必须预存'+item.m_DepositAmount/100+'元以上话费，否则无法正常开机使用。使用满一年后可免违注销，仅限上海本地办理，持证件签收'"
 					:center="true"></uv-cell>
 			</uv-cell-group>
 
@@ -85,7 +85,7 @@
 					<uv-text type="error" mode="price" text="0"></uv-text>
 				</view>
 				<view>
-					<text>预存200+卡费0</text>
+					<text>预存{{item.m_DepositAmount/100}}元+卡费0元</text>
 				</view>
 			</view>
 			<view class="right">
@@ -120,7 +120,7 @@
 					username: '',
 					mobile: '',
 					address: '',
-					beizhu: ''
+					beizhu: '',
 				},
 				agrrementContent: '',
 				rules: {
@@ -159,19 +159,19 @@
 				if(!this.isValide) return;
 				
 				this.$http(this.$api.order, {
-					...this.form
+					...this.form,
+					...this.item
 				}).then(res => {
 					console.log(res.data);
-					
-					// todo
-					if(res.data){
+					const {code} = res.data;
+					if(code===0){
 						this.$refs.uvToast.show({
 							type: 'success',
 							message: "提交成功",
 							duration:3000,
 							complete() {
-								uni.navigateBack({
-									delta: 1
+								uni.navigateTo({
+									url: '/pages/tabbar/home/index'
 								});
 							}
 						});
