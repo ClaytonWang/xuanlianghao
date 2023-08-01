@@ -1,1 +1,0 @@
-import{o as e,c as a,w as t,i as o,a as s}from"./index-f2590237.js";import{_ as n}from"./_plugin-vue_export-helper.1b428a4d.js";const r=n({data:()=>({title:"Hello"}),onLoad(){},methods:{}},[["render",function(n,r,d,c,l,i){const p=o;return e(),a(p,{class:"content"},{default:t((()=>[s(" 页面 - 1 ")])),_:1})}],["__scopeId","data-v-ec30de30"]]);export{r as default};
