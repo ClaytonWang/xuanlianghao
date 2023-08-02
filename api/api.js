@@ -6,7 +6,7 @@ if(process.env.NODE_ENV === 'development'){
 	rootUrl = 'http://www.xuanlianghao.cn'
 }else{
     // 生产环境
-    rootUrl = 'http://www.xuanlianghao.cn'
+    rootUrl = 'https://www.xuanlianghao.cn'
 }
 
 export const baseUrl = rootUrl;

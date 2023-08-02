@@ -187,7 +187,6 @@
 					pageSize: 10,
 					page: 1
 				});
-				this.loading =false;
 				console.log(res, '返回参数');
 				const {
 					data,
@@ -196,6 +195,7 @@
 				if (code == 0) {
 					this.$refs.paging?.complete(data);
 				}
+				this.loading =false;
 			}
 		},
 		computed: {
