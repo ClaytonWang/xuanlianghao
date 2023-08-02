@@ -2,10 +2,11 @@ let rootUrl = "";
 
 if(process.env.NODE_ENV === 'development'){
     // 开发环境
-    rootUrl = 'http://127.0.0.1:7002'
+    // rootUrl = 'http://127.0.0.1:7002'
+	rootUrl = 'http://www.xuanlianghao.cn'
 }else{
     // 生产环境
-    rootUrl = 'http://xuanlianghao.cn'
+    rootUrl = 'http://www.xuanlianghao.cn'
 }
 
 export const baseUrl = rootUrl;

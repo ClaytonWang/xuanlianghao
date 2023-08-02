@@ -3,10 +3,10 @@
 		<uv-swiper :list="imgsList" previousMargin="50" nextMargin="50" circular :autoplay="true" radius="5"
 			height="200px" bgColor="#ffffff"></uv-swiper>
 		<HomeNav />
-		
+
 		<uv-tabs :list="navList" @click="click" class="tab" :activeStyle="active" :inactiveStyle="inactive"
 			itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></uv-tabs>
-			
+
 		<view class="conent-suite-box" v-if="currTab==='suite'">
 			<view v-for="item in suites" :key="item.id">
 				<Suite :item="item" />
@@ -28,8 +28,13 @@
 	export default {
 		data() {
 			return {
-				loading:true,
+				loading: true,
 				currTab: 'phone',
+				searchWords: '',
+				filter: {
+					rule: '',
+					price: '3'
+				},
 				imgsList: [
 					'/static/img/swiper/3.jpg',
 					'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/2af8a801cde75ee45edd03a594d95f5d.png',
@@ -38,7 +43,7 @@
 				navList: [{
 					name: '手机靓号',
 					id: 'phone'
-				},{
+				}, {
 					name: '超值套餐',
 					id: 'suite'
 				}],
@@ -78,19 +83,31 @@
 				],
 			}
 		},
-		async onLoad() {
-			const res = await this.$http(this.$api.search, {
-				filter: {rule:'',price:'3'}
-			});
-			this.loading=false;
-			const {
-				data,
-				code
-			} = res.data;
-			if (code == 0) {
-				store.dispatch('getPrettyNums',data.splice(0,10));
+		onNavigationBarSearchInputChanged(e) {
+			this.searchWords = e.text;
+			console.log(this.searchWords);
+		},
+		async onNavigationBarSearchInputConfirmed() {
+			uni.hideKeyboard(); //隐藏软键盘
+			if (this.searchWords.trim().length == 0) {
+				//搜索框内容为空
+				return;
 			}
-			
+			//搜索框内容不为空时操作
+			this.filter = {
+				strResNumDesc: this.searchWords
+			};
+			console.log(this.filter)
+			await this.getList();
+		},
+
+		async onLoad() {
+			this.filter = {
+				rule: '',
+				price: '3'
+			};
+			await this.getList();
+			this.loading = false;
 		},
 		onShow() {
 			console.log(store.state.myFavorite.length)
@@ -99,15 +116,29 @@
 				text: store.state.myFavorite.length.toString()
 			});
 		},
-		computed:{
-			prettyNums(){
+		computed: {
+			prettyNums() {
 				return this.$store.state.prettyNums;
 			}
 		},
 		methods: {
 			click(item) {
 				this.currTab = item.id;
-			}
+			},
+			async getList() {
+				const res = await this.$http(this.$api.search, {
+					filter: this.filter,
+					pageSize: 100,
+					page: 1
+				});
+				const {
+					data,
+					code
+				} = res.data;
+				if (code == 0) {
+					store.dispatch('getPrettyNums', data.splice(0, 10));
+				}
+			},
 		}
 	};
 </script>

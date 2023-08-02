@@ -89,11 +89,13 @@
 				</view>
 			</view>
 			<view class="right">
+				<uv-loading-icon mode="spinner" v-if="loading" ></uv-loading-icon>
 				<view class="sc" @click="clickFavorite">{{item.isFav?'已收藏':'收藏'}}</view>
-				<view class="order-now" @click="submit" :class="!isValide?'disabled':''">提交订单</view>
+				<view class="order-now" @click="submit" :class="!isValide || loading?'disabled':''">提交订单</view>
 			</view>
 		</view>
 		<uv-toast ref="uvToast"></uv-toast>
+		
 	</view>
 </template>
 
@@ -114,6 +116,7 @@
 		},
 		data() {
 			return {
+				loading:false,
 				item: {},
 				checkboxValue: ['aggrement'],
 				form: {
@@ -157,11 +160,12 @@
 			},
 			submit() {
 				if(!this.isValide) return;
-				
+				this.loading = true;
 				this.$http(this.$api.order, {
 					...this.form,
 					...this.item
 				}).then(res => {
+					this.loading = false;
 					console.log(res.data);
 					const {code} = res.data;
 					if(code===0){
@@ -170,7 +174,7 @@
 							message: "提交成功",
 							duration:3000,
 							complete() {
-								uni.navigateTo({
+								uni.switchTab({
 									url: '/pages/tabbar/home/index'
 								});
 							}
