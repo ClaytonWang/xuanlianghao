@@ -13,7 +13,7 @@
 				<DaDropdown ref="DaDropdownRef" :dropdownMenu="dropdownMenuList" :duration="300" :menuActiveText="false"
 					@confirm="handleConfirm">
 				</DaDropdown>
-
+				<uv-loading-icon v-if="loading" mode="spinner" text="加载中"></uv-loading-icon>
 				<view class="content-number-box">
 					<view v-for="item in numList" :key="item.id">
 						<PrettyNumberItem :item="item" />
@@ -73,11 +73,12 @@
 					break;
 			}
 
-			await this.getList(1, 15);
+			//await this.getList(1, 15);
 			this.$refs.paging.reload()
 		},
 		data() {
 			return {
+				loading:true,
 				filter: {
 					rule: '-9999',
 					price: '-9999'
@@ -180,11 +181,13 @@
 			},
 			async getList(pageNo, pageSize) {
 				// return this.$refs.paging.complete(this.$store.state.myFavorite);
+				this.loading=true;
 				const res = await this.$http(this.$api.search, {
 					filter: this.filter,
 					pageSize: 10,
 					page: 1
 				});
+				this.loading =false;
 				console.log(res, '返回参数');
 				const {
 					data,

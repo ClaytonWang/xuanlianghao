@@ -1,0 +1,1 @@
+import{o as a,f as r,C as s,j as o}from"./index-89a35437.js";import{_ as t}from"./_plugin-vue_export-helper.1b428a4d.js";const e=t({data:()=>({})},[["render",function(t,e,n,d,l,p){return a(),r("div",{class:"cont"},[s("p",null,[s("strong",null,"加急送货政策"),s("br"),o(" 加急送货需要支付一定的送货费用，具体联系客服。 "),s("br"),o("  ")])])}],["__scopeId","data-v-af75da7c"]]);export{e as default};
