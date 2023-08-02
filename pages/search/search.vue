@@ -74,7 +74,7 @@
 			}
 
 			//await this.getList(1, 15);
-			this.$refs.paging.reload()
+			//this.$refs.paging.reload()
 		},
 		data() {
 			return {
