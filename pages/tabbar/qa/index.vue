@@ -37,7 +37,7 @@
 	export default {
 		data() {
 			return {
-				phone: '+8613816801870',
+				phone: '+8618221281081',
 				phones: '',
 			}
 		},
