@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
-		<uv-swiper :list="imgsList" previousMargin="50" nextMargin="50" circular :autoplay="true" radius="5"
-			height="200px" bgColor="#ffffff"></uv-swiper>
+		<uv-swiper @click="goPage" :list="imgsList" previousMargin="50" nextMargin="50" circular :autoplay="true" radius="5"
+			height="250px" bgColor="#ffffff"></uv-swiper>
 		<HomeNav />
 
 		<uv-tabs :list="navList" @click="click" class="tab" :activeStyle="active" :inactiveStyle="inactive"
@@ -37,8 +37,11 @@
 				},
 				imgsList: [
 					'/static/img/swiper/3.jpg',
-					'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/2af8a801cde75ee45edd03a594d95f5d.png',
-					'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/1fa6f9febfc09c4b455ff0b80e0cfd04.png',
+					// '/static/img/swiper/banner1.webp',
+					'/static/img/swiper/banner2.webp',
+					'/static/img/swiper/banner3.jpg'
+					// 'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/2af8a801cde75ee45edd03a594d95f5d.png',
+					// 'http://hsz-phone.oss-cn-shanghai.aliyuncs.com/banner/20230213/1fa6f9febfc09c4b455ff0b80e0cfd04.png',
 				],
 				navList: [{
 					name: '手机靓号',
@@ -122,6 +125,12 @@
 			}
 		},
 		methods: {
+			goPage(){
+				let url='/pages/search/search?filter=';
+				uni.navigateTo({
+					url
+				});
+			},
 			click(item) {
 				this.currTab = item.id;
 			},

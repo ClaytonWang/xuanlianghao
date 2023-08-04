@@ -34,6 +34,8 @@
 	}
 
 	body {
+		max-width: 820px;
+		margin: 0 auto;
 		background-color: #efefef;
 	}
 
@@ -41,8 +43,7 @@
 		color: #f0430d;
 	}
 	#app {
-		max-width: 820px;
-		margin: 0 auto;
+		
 	}
 </style>
 <style lang="scss">
