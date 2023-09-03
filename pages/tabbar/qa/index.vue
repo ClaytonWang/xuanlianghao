@@ -9,7 +9,7 @@
 		</view>
 		<view class="body">
 			<view>
-				<a href="https://work.weixin.qq.com/kfid/kfc3e72972dafd4a78d">
+				<a href="https://work.weixin.qq.com/kfid/kfc6e2f21b41faed5fc">
 					<image src="../../../static/img/90ef8a39.png"></image>
 				</a>
 				<text>立即咨询</text>
