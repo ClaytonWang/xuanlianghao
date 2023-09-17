@@ -145,7 +145,7 @@
 					code
 				} = res.data;
 				if (code == 0) {
-					store.dispatch('getPrettyNums', data.splice(0, 10));
+					store.dispatch('getPrettyNums', data.splice(0, data.length));
 				}
 			},
 		}
